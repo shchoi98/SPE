@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head th:replace="template :: head"></head>
+
+  <body class="">
+    <div th:replace="template :: header"></div>
+    <div id="content" class="container">
+      <div th:each="invoice : ${invoices}" class="invoice row">
+        <table class="invoice-table">
+          <tr>
+            <th>Invoice</th>
+            <th>Sender</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>
+              <a
+                th:href="@{'/file?file=' + ${invoice.getFilename()}}"
+                th:text="${invoice.getFilename()}"
+              ></a>
+            </td>
+            <td th:text="${invoice.getSender()}"></td>
+            <td
+              th:text="${#dates.format(invoice.getDateReceived(), 'dd-MM-yyyy')}"
+            ></td>
+            <td>
+              <form method="POST" th:action="@{/view(uid=${invoice.getUid()})}">
+                <select id="invoice" name="status">
+                  <option
+                    value="0"
+                    th:selected="${invoice.getStatus()==T(com.paylist.models.Status).PAID}"
+                    >PAID</option
+                  >
+                  <option
+                    value="1"
+                    th:selected="${invoice.getStatus()==T(com.paylist.models.Status).PENDING}"
+                    >PENDING</option
+                  >
+                  <option
+                    value="2"
+                    th:selected="${invoice.getStatus()==T(com.paylist.models.Status).CANCELLED}"
+                    >CANCELLED</option
+                  >
+                  <option
+                    value="3"
+                    th:selected="${invoice.getStatus()==T(com.paylist.models.Status).REFUNDED}"
+                    >REFUNDED</option
+                  >
+                </select>
+                <button type="submit" id="status-ok">Ok</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

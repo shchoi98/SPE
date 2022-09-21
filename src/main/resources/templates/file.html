@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head th:replace="template :: head"></head>
+
+  <body class="">
+    <div th:replace="template :: header"></div>
+    <div class="center-div">
+      <iframe th:src="@{'invoices/' + ${file}}" width="1000x" height="700px" />
+    </div>
+  </body>
+</html>

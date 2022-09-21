@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:fragment="head">
+  <meta charset="UTF-8" />
+  <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+  <title th:text="${title} + 'Paylist'"></title>
+  <link rel="shortcut icon" type="image/png" th:href="@{images/favicon.png}" />
+  <link th:href="@{/css/styles.css}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+</head>
+<div th:fragment="header" id="header">
+  <img th:src="@{images/header-logo.png}" alt="logo" id="header-img" />
+  <div id="headerNav">
+    <form class="inline" id="form-view" action="/view" method="GET">
+      <div class="headerNavButtons" onclick="document.getElementById('form-view').submit();">VIEW</div>
+    </form>
+  </div>
+</div>
+
+</html>
